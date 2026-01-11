@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Category;
+use App\Services\EmailValidationService;
 
 class ListingController extends Controller
 {
