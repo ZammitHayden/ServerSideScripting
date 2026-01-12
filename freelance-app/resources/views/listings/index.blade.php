@@ -60,6 +60,7 @@
 
                     <form action="{{ route('listings.destroy', $listing) }}"
                           method="POST">
+                        @csrf
                         @method('DELETE')
                         <button onclick="return confirm('Delete this listing?')">
                             Delete

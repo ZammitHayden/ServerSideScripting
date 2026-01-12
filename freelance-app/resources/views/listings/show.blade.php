@@ -30,6 +30,7 @@
         <a href="{{ route('listings.edit', $listing) }}">Edit</a>
 
         <form action="{{ route('listings.destroy', $listing) }}" method="POST" style="display:inline;">
+            @csrf
             @method('DELETE')
             <button onclick="return confirm('Delete this listing?')">Delete</button>
         </form>
