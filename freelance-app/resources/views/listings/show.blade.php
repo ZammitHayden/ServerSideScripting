@@ -9,7 +9,7 @@
 
     <p>
         <strong>Category:</strong>
-        {{ $listing->category->name ?? '-' }}
+        {{ $listing->category->name }}
     </p>
 
     <p>
@@ -34,4 +34,51 @@
             <button onclick="return confirm('Delete this listing?')">Delete</button>
         </form>
     </div>
+
+     <div>
+            <div>
+
+                <h4>Contact Freelancer</h4>
+
+                @if (session('success'))
+                    <div>
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('listings.message', $listing) }}">
+                    @csrf
+
+                    <div>
+                        <label>
+                            Your Email
+                        </label>
+                        <input
+                            type="email"
+                            name="sender_email"
+                            required
+                        >
+                    </div>
+
+                    <div>
+                        <label class="form-label">
+                            Message
+                        </label>
+                        <textarea
+                            name="message"
+                            rows="4"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button>Send Message</button>
+                </form>
+
+            </div>
+        </div>
+
+        <a href="{{ route('listings.index') }}">Back to Listings</a>
+
+    </div>
+</div>
 @endsection
