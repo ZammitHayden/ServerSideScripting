@@ -23,6 +23,12 @@
     </div>
 </nav>
 
+<main class="container mb-5">
+
+    @yield('content')
+
+</main>
+
 <footer class="bg-white border-top py-3">
     <div class="container text-center text-muted small">
         &copy; {{ date('Y') }} Freelance Hub. All rights reserved.

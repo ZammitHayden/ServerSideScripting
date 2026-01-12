@@ -30,6 +30,7 @@ class ListingController extends Controller
 
         return view('listings.index', [
             'listings'=> $query->get(),
+            'categories'  => Category::all(),
         ]);
     }
 
