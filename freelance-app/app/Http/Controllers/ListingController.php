@@ -57,6 +57,14 @@ class ListingController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
+        if (!EmailValidationService::isValid($validated['email'])) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'email' => 'This email address could not be verified. Please use a valid, non-disposable email.',
+                ]);
+        }
+
         Listing::create($validated);
 
         return redirect()
@@ -96,6 +104,14 @@ class ListingController extends Controller
             'email'       => 'required|email',
             'category_id' => 'required|exists:categories,id',
         ]);
+        
+        if (!EmailValidationService::isValid($validated['email'])) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'email' => 'This email address could not be verified. Please use a valid, non-disposable email.',
+                ]);
+        }
 
         $listing->update($validated);
 
@@ -126,6 +142,14 @@ class ListingController extends Controller
             'message'      => 'required|string|min:10',
         ]);
 
+        if (!EmailValidationService::isValid($validated['senderemail'])) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'senderemail' => 'This email address could not be verified. Please use a valid, non-disposable email.',
+                ]);
+        }
+        
         $listing->messages()->create($validated);
 
         return back()->with('success', 'Message sent successfully.');
