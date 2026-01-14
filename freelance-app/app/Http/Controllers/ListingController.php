@@ -145,11 +145,11 @@ class ListingController extends Controller
             'message'      => 'required|string|min:10',
         ]);
 
-        if (!EmailValidationService::isValid($validated['senderemail'])) {
+        if (!EmailValidationService::isValid($validated['sender_email'])) {
             return back()
                 ->withInput()
                 ->withErrors([
-                    'senderemail' => 'This email address could not be verified. Please use a valid, non-disposable email.',
+                    'sender_email' => 'This email address could not be verified. Please use a valid, non-disposable email.',
                 ]);
         }
         
