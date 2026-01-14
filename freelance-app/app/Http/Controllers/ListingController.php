@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Listing;
 use App\Models\Category;
 use App\Services\EmailValidationService;
+use App\Services\ListingAnalyticsService;
 
 class ListingController extends Controller
 {
@@ -31,6 +32,7 @@ class ListingController extends Controller
         return view('listings.index', [
             'listings'=> $query->get(),
             'categories'  => Category::all(),
+            'hotListings' => ListingAnalyticsService::hotListings()
         ]);
     }
 
@@ -77,7 +79,8 @@ class ListingController extends Controller
      */
     
     public function show(Listing $listing)
-    {
+    {               
+        ListingAnalyticsService::recordView($listing);
         return view('listings.show', compact('listing'));
     }
 
@@ -151,6 +154,7 @@ class ListingController extends Controller
         }
         
         $listing->messages()->create($validated);
+        ListingAnalyticsService::recordMessage($listing);
 
         return back()->with('success', 'Message sent successfully.');
     }
