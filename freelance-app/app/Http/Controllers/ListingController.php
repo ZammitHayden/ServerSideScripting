@@ -37,7 +37,7 @@ class ListingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Shows the form for creating a new resource.
      */
     public function create()
     {

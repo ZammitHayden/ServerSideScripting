@@ -30,7 +30,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Contact Email</label>
-                            <inpu type="email" name="email" class="form-control" value="{{ old('email', $listing->email) }}" required>
+                            <input type="email" name="email" class="form-control" value="{{ old('email', $listing->email) }}" required>
                         </div>
 
                         <div class="mb-4">
